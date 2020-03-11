@@ -1,5 +1,5 @@
 {
-module Main where
+module PascalTokens where
 }
 
 %wrapper "basic"
@@ -11,8 +11,6 @@ tokens :-
     $white+ { \s -> TokenWhite}
     "BEGIN" { \s -> TokenBegin}
     "PROGRAM" { \s -> TokenProgram}
-    "INPUT" {\s -> TokenInput}
-    "OUTPUT" {\s -> TokenOutput}
     "VAR" {\s -> TokenVar}
     "WHILE" {\s -> TokenWhile}
     "DO" {\s -> TokenDo}
@@ -23,16 +21,14 @@ tokens :-
     \+ {\s -> TokenPlus}
     \- {\s -> TokenMinus}
     \* {\s -> TokenProduct}
-    \/ {\s -> TokenDivide}
     \< {\s -> TokenLessThan}
     \> {\s -> TokenHigherThan}
     \<> {\s -> TokenDifferentThan}
-    \= {\s -> TokenEqualThan}
+    \= {\s -> TokenAssignation}
     \>= {\s -> TokenHigherEqualThan}
     \<= {\s -> TokenLessEqualThan}
     \, {\s -> TokenComma}
     \; {\s -> TokenSemicolon}
-    \. {\s -> TokenDot}
     $digit+	 { \s -> TokenInt (read s) }
     $alpha [$alpha $digit \_ ]*		{ \s -> TokenIdentifier s }
     
@@ -46,35 +42,28 @@ data Token =
   TokenWhite | 
   TokenBegin | 
   TokenProgram |
-  TokenInput | 
-  TokenOutput | 
   TokenVar | 
   TokenWhile | 
   TokenDo | 
   TokenEnd | 
-  TokenFunction |
   TokenLeftParenthesis |
   TokenRightParenthesis |
   TokenPlus |
   TokenMinus |
   TokenProduct |
-  TokenDivide |
   TokenLessThan |
   TokenHigherThan |
   TokenDifferentThan |
-  TokenEqualThan |
+  TokenAssignation |
   TokenHigherEqualThan |
   TokenLessEqualThan |
   TokenComma |
   TokenSemicolon |
-  TokenDot |
   TokenInt Int	|
-  TokenRead | 
   TokenIdentifier String |
+  TokenRead | 
   TokenWrite 
   deriving (Eq,Show)
 
-main = do
-    s <- getContents
-    print (alexScanTokens s)
+scanTokens = alexScanTokens
 }
