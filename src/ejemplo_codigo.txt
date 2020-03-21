@@ -1,18 +1,18 @@
 PROGRAM HolaMundo;
 BEGIN
-  writeln(hola);
-END.
+writeln(hola);
+END
 
 PROGRAM Suma;
 VAR
-  Sumando1, Sumando2, Suma;
+Sumando1, Sumando2, Suma;
 
 BEGIN
-  writeln();
-  readln(Sumando1);
-  writeln();
-  readln(Sumando2);
-  Suma := Sumando1 + Sumando2;
-  writeln(Suma);
-END.
+writeln();
+readln(Sumando1);
+writeln();
+readln(Sumando2);
+Suma = Sumando1 + Sumando2;
+writeln(Suma);
+END
 
