@@ -43,21 +43,23 @@
 
     %%
 
-    program : program_token id ';' nl begin nl lines end '.'
+    program : program_token id ';' nl begin nl lines end '.' { Program $2 $7 }
     
-    lines : line lines | line
+    lines : line lines          { Line }
+         | line
     
     line : var_declaration
          | while_expr
-         | id ':=' expr ';' ln
+         | id ':=' expr ';' nl
 
     var_declaration : var id_list 
     
     id_list: id ';' nl 
              | id ',' id_list
 
-    while_expr : while log_expr do ln begin ln program end ';' ln
-                | while log_expr do ln line
+
+    while_expr : while log_expr do nl begin nl lines end ';' ln
+                | while log_expr do nl line
     
     expr : term '+' term
             | term '-' term
@@ -79,4 +81,8 @@
 {
 parseError :: [Token] -> a
 parseError _ = error "Parse error"
+
+data Program
+    = Program String Lines
+    
 }
