@@ -1,5 +1,5 @@
 {
-module Main where
+module Tokens where
 }
 
 %wrapper "basic"
@@ -71,7 +71,6 @@ data Token =
   TokenWrite 
   deriving (Eq,Show)
 
-main = do
-  s <- getContents
-  print( alexScanTokens s)
+scanTokens = alexScanTokens 
+
 }
