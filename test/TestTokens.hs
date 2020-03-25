@@ -1,40 +1,26 @@
-module Main where
 
+module Main (
+    main
+) where
+
+import qualified System.Exit as Exit
 import Test.HUnit
+import Data.Char
 
-import Tokens
+four :: Int
+four = 4
 
+tests, test1, test2, test3 :: Test
+test1 = TestCase $ assertEqual "test upCase" "FOO" (map toUpper "foot")
+test2 = TestCase $ assertEqual "testing that the result is 4" 4 (4::Int)
+test3 = TestCase $ assertEqual "testing that 4 is 4" four 4
+test4 = TestCase $ assertString "321" 
 
---Pending of start doing tests
+tests = TestList [TestLabel "test1" test1, TestLabel "test2" test2, TestLabel "test3" test3]
+tests2 = TestList [TestLabel "test1" test1, TestLabel "test4" test4]
 
-foo :: Int -> (Int, Int)
-foo x = (1, x)
-
-partA :: Int -> IO (Int, Int)
-partA v = return (v+2, v+3)
-
-partB :: Int -> IO Bool
-partB v = return (v > 5)
-
-test1 :: Test
-test1 = TestCase (assertEqual "for (foo 3)," (1,2) (foo 3))
-
-test2 :: Test
-test2 = TestCase (do (x,y) <- partA 3
-                     assertEqual "for the first result of partA," 5 x
-                     b <- partB y
-                     assertBool ("(partB " ++ show y ++ ") failed") b)
-
-tests :: Test
-tests = TestList [TestLabel "test1" test1, TestLabel "test2" test2]
-
-tests' :: Test
-tests' = test [ "test1" ~: "(foo 3)" ~: (1,2) ~=? (foo 3),
-                "test2" ~: do (x, y) <- partA 3
-                              assertEqual "for the first result of partA," 5 x
-                              partB y @? "(partB " ++ show y ++ ") failed" ]
-
-
-main :: IO Counts
-main = do _ <- runTestTT tests
-          runTestTT tests'
+main :: IO ()
+main = do 
+    count2 <- runTestTT $ tests2 
+    count <- runTestTT $ tests
+    if failures count > 0 || failures count2 > 0 then Exit.exitFailure else return ()

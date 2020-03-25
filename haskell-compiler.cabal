@@ -44,9 +44,9 @@ executable haskell-compiler
 
 test-suite test
   type:                exitcode-stdio-1.0
-  build-depends:       base >= 4.12 && <4.13
-                    ,  haskell-compiler
-                    ,  HUnit
+  build-depends:       base >= 4.12 && <4.13,
+                       haskell-compiler,
+                       HUnit
   hs-source-dirs:      test
   main-is:             TestTokens.hs             
 
