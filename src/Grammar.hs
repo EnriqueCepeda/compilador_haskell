@@ -774,58 +774,6 @@ data LogExpr
     | EqualThan Expr Expr
     | DifferentThan Expr Expr
     deriving (Eq, Show)
-
-instance Show Program where
-    show Program = "Program"
-
-instance Show Lines where
-    show Ln = "Line"
-    show Lines = "Lines"
-
-instance Show Line where
-    show VarDec = "VarDec"
-    show While = "While"
-    show Assign = "Assign"
-    show Write = "Write"
-    show Read = "Read"
-
-instance Show VarDeclaration where
-    show VarDeclaration = "VarDeclaration"
-
-instance Show IdList where
-    show Id = "ID"
-    show Ids = "IDs"
-
-instance Show WhileExpr where
-    show WhileLarge = "WhileLarge"
-    show WhileShort = "WhileShort"
-
-instance Show WriteExpr where
-    show WriteExpr = "WriteExpr"
-
-instance Show WriteArgs where
-    show WArg = "WriteArg"
-    show WArgs = "WriteArgs"
-
-instance Show WriteArg where
-    show String = "String"
-    show Expr = "ExprWrite"
-
-instance Show Expr where
-    show Var = "Var"
-    show Int = "Int"
-    show Brack = "Brack"
-    show Plus = "Plus"
-    show Minus = "Minus"
-    show Times = "Times"
-
-instance Show LogExpr where
-    show GreaterEqThan = "GreaterEqThan"
-    show LessEqThan = "LessEqThan"
-    show GreaterThan = "GreaterThan"
-    show LessThan = "LessThan"
-    show EqualThan = "EqualThan"
-    show DifferentThan = "DifferentThan"
 {-# LINE 1 "templates/GenericTemplate.hs" #-}
 {-# LINE 1 "templates/GenericTemplate.hs" #-}
 {-# LINE 1 "<built-in>" #-}
