@@ -1,5 +1,5 @@
 {
-module Main where
+module Tokens where
 }
 
 %wrapper "basic"
@@ -36,6 +36,7 @@ tokens :-
     \.                            {\s -> TokenPoint}
     $digit+	                      { \s -> TokenInt (read s) }
     $alpha [$alpha $digit \_ ]*		{ \s -> TokenIdentifier s }
+    \".$printable*.\"             { \s -> TokenWriteString (read s) }
     
 
 {
@@ -65,13 +66,11 @@ data Token =
   TokenComma |
   TokenSemicolon |
   TokenPoint |
-  TokenInt Int	|
+  TokenInt Int |
   TokenIdentifier String |
   TokenRead | 
-  TokenWrite 
+  TokenWrite |
+  TokenWriteString String
   deriving (Eq,Show)
 
-main = do
-  s <- getContents
-  print( alexScanTokens s)
 }
