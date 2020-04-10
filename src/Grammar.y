@@ -44,32 +44,33 @@ import Data.Char
 
 %left '+' '-'
 %left '*'
-%left '(' ')'
+
     %%
 
-    program : program_token id ';' nl begin nl lines end '.' { Program $2 $7 }
+    program : program_token id ';' nl begin nl lines end '.'    { Program $2 $7 }
+            | program_token id ';' nl begin nl lines end '.' nl { Program $2 $7 }
     
-    lines : line lines              { Lns $1 $2 }
-         | line                     { Ln $1 }
+    lines : line lines              { $1:$2 }
+         | line                     { [$1] }
     
     line : var_declaration          { VarDec $1 }
          | while_expr               { While $1}
          | id ':=' expr ';' nl      { Assign $1 $3}
          | write_expr               { Write $1 }
-         | readln '(' id ')'        { Read $3 }
+         | readln '(' id ')' ';' nl { Read $3 }
 
     var_declaration : var id_list   { VarDeclaration $2 }
     
-    id_list: id ';' nl              { Id $1 } 
-             | id ',' id_list       { Ids $1 $3 }
+    id_list: id ',' id_list         { $1:$3 } 
+             | id ';' nl            { [$1] }
 
     while_expr : while log_expr do nl begin nl lines end ';' nl     { WhileLarge $2 $7 }
                 | while log_expr do nl line                         { WhileShort $2 $5 }
     
-    write_expr : writeln '(' write_args ')'    { WriteExpr $3 }
+    write_expr : writeln '(' write_args ')' ';' nl  { WriteExpr $3 }
 
-    write_args : write_arg ',' write_args       { WArgs $1 $3 }
-                | write_arg                     { WArg $1 }
+    write_args : write_arg ',' write_args       { $1:$3 }
+                | write_arg                     { [$1] }
 
     write_arg : string                          { String $1 }
             | expr                              { Expr $1 }
@@ -93,12 +94,7 @@ parseError :: [Token] -> a
 parseError _ = error "Parse error"
 
 data Program
-    = Program String Lines
-    deriving (Eq, Show)
-
-data Lines
-    = Lns Line Lines
-    | Ln Line
+    = Program String [Line]
     deriving (Eq, Show)
     
 data Line
@@ -110,26 +106,16 @@ data Line
     deriving (Eq, Show)
 
 data VarDeclaration
-    = VarDeclaration IdList
-    deriving (Eq, Show)
-
-data IdList
-    = Id String
-    | Ids String IdList
+    = VarDeclaration [String]
     deriving (Eq, Show)
 
 data WhileExpr
-    = WhileLarge LogExpr Lines
+    = WhileLarge LogExpr [Line]
     | WhileShort LogExpr Line
     deriving (Eq, Show)
 
 data WriteExpr
-    = WriteExpr WriteArgs
-    deriving (Eq, Show)
-
-data WriteArgs
-    = WArgs WriteArg WriteArgs
-    | WArg WriteArg
+    = WriteExpr [WriteArg]
     deriving (Eq, Show)
     
 data WriteArg
