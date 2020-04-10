@@ -1,26 +1,27 @@
 
-module Main (
-    main
-) where
+module Main where
 
 import qualified System.Exit as Exit
-import Test.HUnit
+import Test.Tasty.HUnit as HU
+import Test.Tasty
 import Data.Char
+import Tokens
 
-four :: Int
-four = 4
+testPoint = HU.testCase "Point element recognized" (
+    assertEqual "Point returns TokenPoint" (scanTokens ".") [TokenPoint])
+testInteger = HU.testCase "Integer element recognized" $
+    assertEqual "Number returns TokenInt" (scanTokens "5") [TokenInt 5]
 
-tests, test1, test2, test3 :: Test
-test1 = TestCase $ assertEqual "test upCase" "FOO" (map toUpper "foot")
-test2 = TestCase $ assertEqual "testing that the result is 4" 4 (4::Int)
-test3 = TestCase $ assertEqual "testing that 4 is 4" four 4
-test4 = TestCase $ assertString "321" 
 
-tests = TestList [TestLabel "test1" test1, TestLabel "test2" test2, TestLabel "test3" test3]
-tests2 = TestList [TestLabel "test1" test1, TestLabel "test4" test4]
+--tokens1, tokens2, tokens3 :: TestTree
+--t1 = HU.testCase $ assertFailure "Test 1" scanTokens "PROGRAM holaMundo;"
+--t2 = HU.TestCase $ assertFailure "Test 2" scanTokens readFile "test/tokens2.txt"
+--t3 = HU.TestCase $ assertFailure "Test 3" scanTokens readFile "test/tokens3.txt"
+
+allTests :: TestTree
+allTests = testGroup "Tasty tests" [
+    testGroup "Lexical Analyzer tests" [testPoint, testInteger]
+    ]
 
 main :: IO ()
-main = do 
-    count2 <- runTestTT $ tests2 
-    count <- runTestTT $ tests
-    if failures count > 0 || failures count2 > 0 then Exit.exitFailure else return ()
+main = defaultMain allTests

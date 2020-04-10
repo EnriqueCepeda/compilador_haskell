@@ -73,4 +73,5 @@ data Token =
   TokenWriteString String
   deriving (Eq,Show)
 
+scanTokens = alexScanTokens
 }

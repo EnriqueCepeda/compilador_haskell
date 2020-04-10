@@ -1,17 +1,5 @@
-PROGRAM HolaMundo;
-BEGIN
-writeln(hola);
-END
-
 PROGRAM Suma;
-
 BEGIN
-VAR Sumando1, Sumando2, Suma;
-writeln();
-readln(Sumando1);
-writeln();
-readln(Sumando2);
 Suma := Sumando1 + Sumando2;
-writeln(Suma);
-END
+END.
 

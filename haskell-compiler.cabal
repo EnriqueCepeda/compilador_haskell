@@ -19,7 +19,8 @@ cabal-version:       >=1.10
 
 library
   exposed-modules:     Tokens,
-                       Paths_haskell_compiler
+                       Paths_haskell_compiler,
+                       Grammar
   -- other-extensions:   
   build-depends:       array >=0.5 && <0.6
                     ,  base >=4.12 && <4.13
@@ -46,7 +47,8 @@ test-suite test
   type:                exitcode-stdio-1.0
   build-depends:       base >= 4.12 && <4.13,
                        haskell-compiler,
-                       HUnit
+                       tasty,
+                       tasty-hunit
   hs-source-dirs:      test
   main-is:             TestTokens.hs             
 
