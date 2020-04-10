@@ -50,6 +50,6 @@ test-suite test
                        tasty,
                        tasty-hunit
   hs-source-dirs:      test
-  main-is:             TestTokens.hs             
+  main-is:             Tests.hs             
 
                 
