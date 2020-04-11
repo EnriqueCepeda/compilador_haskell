@@ -49,6 +49,8 @@ test-suite test
                        haskell-compiler,
                        tasty,
                        tasty-hunit
+  other-modules:       TestLexical,
+                       TestSintax
   hs-source-dirs:      test
   main-is:             Tests.hs             
 

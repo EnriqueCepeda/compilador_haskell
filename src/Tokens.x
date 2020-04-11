@@ -8,7 +8,7 @@ $digit = 0-9			  -- digits
 $alpha = [a-zA-Z]		-- alphabetic characters (ñ not included)
 
 tokens :-
-    \n+                            {\s -> TokenNewline}
+    \n+                            {\s -> TokenNewLine}
     $white                        ;
     "BEGIN"                       {\s -> TokenBegin}
     "PROGRAM"                     {\s -> TokenProgram}
@@ -44,7 +44,7 @@ tokens :-
 
 data Token = 
 
-  TokenNewline | 
+  TokenNewLine | 
   TokenBegin | 
   TokenProgram |
   TokenVar | 

@@ -4,13 +4,12 @@ module Main where
 import Test.Tasty.HUnit as HU
 import Test.Tasty
 import Data.Char
-import TestSintax
 import TestLexical
+import Tokens
 
 allTests :: TestTree
 allTests = testGroup "Unit tests" [
-    TestLexical.lexicalTests,
-    TestSintax.testGrammar
+    TestLexical.lexicalTests
     ]
 
 main :: IO ()

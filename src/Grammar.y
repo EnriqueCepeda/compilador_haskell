@@ -18,7 +18,7 @@ import Data.Char
     while { TokenWhile }
     do { TokenDo }
     end { TokenEnd }
-    nl { TokenNewline }
+    nl { TokenNewLine }
 
     '(' { TokenLeftParenthesis  }
     ')' { TokenRightParenthesis }
@@ -53,11 +53,11 @@ import Data.Char
     lines : line lines              { $1:$2 }
          | line                     { [$1] }
     
-    line : var_declaration          { VarDec $1 }
-         | while_expr               { While $1}
-         | id ':=' expr ';' nl      { Assign $1 $3}
-         | write_expr               { Write $1 }
-         | readln '(' id ')' ';' nl { Read $3 }
+    line : var_declaration                    { VarDec $1 }
+         | while_expr                         { While $1}
+         | id ':=' expr ';' nl                { Assign $1 $3}
+         | writeln '(' write_args ')' ';' nl  { Write $3 }
+         | readln '(' id ')' ';' nl           { Read $3 }
 
     var_declaration : var id_list   { VarDeclaration $2 }
     
@@ -66,11 +66,10 @@ import Data.Char
 
     while_expr : while log_expr do nl begin nl lines end ';' nl     { WhileLarge $2 $7 }
                 | while log_expr do nl line                         { WhileShort $2 $5 }
-    
-    write_expr : writeln '(' write_args ')' ';' nl  { WriteExpr $3 }
 
     write_args : write_arg ',' write_args       { $1:$3 }
                 | write_arg                     { [$1] }
+                | {- empty -}                   { [] }
 
     write_arg : string                          { String $1 }
             | expr                              { Expr $1 }
@@ -101,7 +100,7 @@ data Line
     = VarDec VarDeclaration
     | While WhileExpr
     | Assign String Expr
-    | Write WriteExpr
+    | Write [WriteArg]
     | Read String
     deriving (Eq, Show)
 
@@ -112,10 +111,6 @@ data VarDeclaration
 data WhileExpr
     = WhileLarge LogExpr [Line]
     | WhileShort LogExpr Line
-    deriving (Eq, Show)
-
-data WriteExpr
-    = WriteExpr [WriteArg]
     deriving (Eq, Show)
     
 data WriteArg
