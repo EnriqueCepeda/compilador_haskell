@@ -1,5 +1,7 @@
 PROGRAM Suma;
 BEGIN
-Suma := Sumando1 + Sumando2;
+WHILE i < 3 DO
+Suma := Sumando1 + (Sumando1 - Sumando2);
+writeln(5,"HOLA");
+readln(suma);
 END.
-
