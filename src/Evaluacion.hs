@@ -17,25 +17,21 @@ evalLines (line:lines) = do
     evalLines lines
 
 evalLine :: Line -> IO String
-evalLine (VarDec varDeclaration) = do
+evalLine (VarDec [String]) = do
     print("New Variable(s) Declaration")
-    evalVarDec varDeclaration
+    evalIdList [String]
 evalLine (While whileExpr) = do
     print("New While Structure")
     evalWhile whileExpr
 evalLine (Assign string assingExpr) = do
     print("New Assing Expression for "++string)
     evalExpr assingExpr
-evalLine (Write writeExpr) = do
+evalLine (Write [WriteArg]) = do
     print("New Write Call")
-    evalWrite writeExpr
+    evalWriteArgs [WriteArg]
 evalLine (Read string) = do
     print("New Read Call for "++string)
     return string
-
-evalVarDec :: VarDeclaration -> IO String
-evalVarDec (VarDeclaration idList) = do
-    evalIdList idList
 
 evalIdList :: [String] -> IO String
 evalIdList [id] = do
@@ -54,16 +50,11 @@ evalWhile (WhileShort logExpr line) = do
     print("While with one line")
     evalLine line
 
-evalWrite :: WriteExpr -> IO String
-evalWrite (WriteExpr writeArgs) = do
-    evalWriteArgs writeArgs
-
 evalWriteArgs :: [WriteArg] -> IO String
 evalWriteArgs [writeArg] = evalWriteArg writeArg
 evalWriteArgs (writeArg:writeArgs) = do
     evalWriteArg writeArg
     evalWriteArgs writeArgs
-
 
 evalWriteArg :: WriteArg -> IO String
 evalWriteArg (String string) = do

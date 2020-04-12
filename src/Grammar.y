@@ -53,13 +53,11 @@ import Data.Char
     lines : line lines              { $1:$2 }
          | line                     { [$1] }
     
-    line : var_declaration                    { VarDec $1 }
+    line : var id_list                        { VarDec $2 }
          | while_expr                         { While $1}
          | id ':=' expr ';' nl                { Assign $1 $3}
          | writeln '(' write_args ')' ';' nl  { Write $3 }
          | readln '(' id ')' ';' nl           { Read $3 }
-
-    var_declaration : var id_list   { VarDeclaration $2 }
     
     id_list: id ',' id_list         { $1:$3 } 
              | id ';' nl            { [$1] }
@@ -97,15 +95,11 @@ data Program
     deriving (Eq, Show)
     
 data Line
-    = VarDec VarDeclaration
+    = VarDec [String]
     | While WhileExpr
     | Assign String Expr
     | Write [WriteArg]
     | Read String
-    deriving (Eq, Show)
-
-data VarDeclaration
-    = VarDeclaration [String]
     deriving (Eq, Show)
 
 data WhileExpr
