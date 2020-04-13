@@ -36,7 +36,7 @@ tokens :-
     \.                            {\s -> TokenPoint}
     $digit+	                      { \s -> TokenInt (read s) }
     $alpha [$alpha $digit \_ ]*		{ \s -> TokenIdentifier s }
-    \".$printable*.\"             { \s -> TokenWriteString (read s) }
+    \"$printable+\"               { \s -> TokenWriteString s }
     
 
 {

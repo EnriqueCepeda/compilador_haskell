@@ -1,8 +1,9 @@
-module Evaluacion where
+module Evaluation where
 import Tokens
 import Grammar
+import Data.HashMap
 
-type VariableDef = (String, Int)
+type VariableDef = (String, Maybe Int)
 
 emptyVariableTable :: [VariableDef]
 emptyVariableTable = []
@@ -43,16 +44,16 @@ evalLine (Assign string assingExpr) = do
     print (evalExpr assingExpr)
     return (show (evalExpr assingExpr))
 evalLine (Write writeArgs) = do
-    print("New Write Call"++evalWriteArgs writeArgs)
+    print("New Write Call for: "++evalWriteArgs writeArgs)
     return (evalWriteArgs writeArgs)
 evalLine (Read string) = do
     print("New Read Call for "++string)
     return string
 
 evalIdList :: [String] -> [VariableDef] -> [VariableDef]
-evalIdList [id] table = addVariableDef (id,0) table
+evalIdList [id] table = addVariableDef (id,Nothing) table
 evalIdList (id:ids) table = evalIdList ids new_table
-    where new_table = addVariableDef (id,0) table
+    where new_table = addVariableDef (id,Nothing) table
 
 evalWriteArgs :: [WriteArg] -> String
 evalWriteArgs [writeArg] = evalWriteArg writeArg
@@ -62,7 +63,6 @@ evalWriteArg :: WriteArg -> String
 evalWriteArg (String string) = string
 evalWriteArg (Expr expr) = show (evalExpr expr)
     
-
 evalExpr :: Expr -> Int
 evalExpr (Var string) = 1
 evalExpr (Int int) = int

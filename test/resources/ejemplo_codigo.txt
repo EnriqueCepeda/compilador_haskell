@@ -1,0 +1,8 @@
+PROGRAM Suma;
+VAR hola, adios;
+BEGIN
+WHILE i < 3 DO
+Suma := Sumando1 + (Sumando1 - Sumando2);
+writeln(5,"HOLA",5);
+readln(suma);
+END.
