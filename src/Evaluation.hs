@@ -3,28 +3,58 @@ import Tokens
 import Grammar
 import qualified Data.Map as Map
 import Data.Maybe
-
-
+import Control.Monad
 
 eval :: Program -> IO (Map.Map String (Maybe Integer))
 eval (Program name variables lines) = do
-    print("Name of the program: "++name)
+    print("Name of the program: " ++name)
     let varDictionary = evalIdList variables Map.empty
     new_varDictionary <- evalLines lines varDictionary
     return new_varDictionary
 
 evalLines :: [Line] -> (Map.Map String (Maybe Integer)) -> IO (Map.Map String (Maybe Integer))
 evalLines [] varDictionary = do
-    print("End of the program")
     return varDictionary
+
 evalLines (line:lines) varDictionary = do
     new_varDictionary <- evalLine line varDictionary
     evalLines lines new_varDictionary
+
 
 evalLine :: Line -> (Map.Map String (Maybe Integer)) -> IO (Map.Map String (Maybe Integer))
 evalLine (Assign string assingExpr) varDictionary = return (case Map.lookup string varDictionary of
     Just _ -> Map.insert string (Just (evalExpr assingExpr varDictionary)) varDictionary
     Nothing -> error ("Variable " ++ string ++ " not declared"))
+
+evalLine (WhileLarge logExpr lines) varDictionary = (case evalLogExpr logExpr varDictionary of 
+    True -> evalLines (lines ++ [WhileLarge logExpr lines]) varDictionary
+    False -> evalLines [] varDictionary )
+
+evalLine (WhileShort logExpr line) varDictionary = (case evalLogExpr logExpr varDictionary of 
+    True -> do
+        new_varDictionary <- evalLine line varDictionary
+        evalLine (WhileShort logExpr line) new_varDictionary
+    False -> return varDictionary)
+
+evalLine (Write writeArgs) varDictionary = do
+    print (evalWriteArgs writeArgs varDictionary)
+    return varDictionary
+
+evalWriteArgs :: [WriteArg] -> (Map.Map String (Maybe Integer)) -> String
+evalWriteArgs [] varDictionary = ""
+evalWriteArgs (writeArg:writeArgs) varDictionary = (evalWriteArg writeArg varDictionary) ++ " " ++ (evalWriteArgs writeArgs varDictionary)
+
+evalWriteArg :: WriteArg -> (Map.Map String (Maybe Integer)) -> String
+evalWriteArg (String string) varDictionary = string
+evalWriteArg (Expr expr) varDictionary = show (evalExpr expr varDictionary)
+
+evalLogExpr :: LogExpr -> (Map.Map String (Maybe Integer)) -> Bool
+evalLogExpr (GreaterEqThan expr1 expr2) varDictionary = evalExpr expr1 varDictionary >= evalExpr expr2 varDictionary
+evalLogExpr (LessEqThan expr1 expr2) varDictionary = evalExpr expr1 varDictionary <= evalExpr expr2 varDictionary
+evalLogExpr (GreaterThan expr1 expr2) varDictionary = evalExpr expr1 varDictionary > evalExpr expr2 varDictionary
+evalLogExpr (LessThan expr1 expr2) varDictionary = evalExpr expr1 varDictionary < evalExpr expr2 varDictionary
+evalLogExpr (EqualThan expr1 expr2) varDictionary = evalExpr expr1 varDictionary == evalExpr expr2 varDictionary
+evalLogExpr (DifferentThan expr1 expr2) varDictionary = evalExpr expr1 varDictionary /= evalExpr expr2 varDictionary
 
 evalExpr :: Expr -> (Map.Map String (Maybe Integer)) -> Integer
 evalExpr (Int integer) varDictionary = integer
@@ -47,5 +77,5 @@ evalIdList (id:ids) table = evalIdList ids new_table
     where new_table = Map.insert id Nothing table
 
 main = do
-    new_dictionary <- eval (Program "Suma" ["Suma","Suma2"] [Assign "Suma" (Plus (Multiply (Var "Suma2")(Int 8))(Int 3))])
+    new_dictionary <- eval (Program "Suma" ["Suma","Por5"] [Write [String "\"hola\"",Expr (Int 5)]])
     print(new_dictionary)
