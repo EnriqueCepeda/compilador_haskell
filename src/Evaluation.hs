@@ -4,6 +4,8 @@ import Grammar
 import qualified Data.Map as Map
 import Data.Maybe
 
+
+
 eval :: Program -> IO (Map.Map String (Maybe Integer))
 eval (Program name variables lines) = do
     print("Name of the program: "++name)
@@ -20,14 +22,15 @@ evalLines (line:lines) varDictionary = do
     evalLines lines new_varDictionary
 
 evalLine :: Line -> (Map.Map String (Maybe Integer)) -> IO (Map.Map String (Maybe Integer))
-evalLine (Assign string assingExpr) varDictionary = do
-    let result = (evalExpr assingExpr)
-    return varDictionary
+evalLine (Assign string assingExpr) varDictionary = return (case Map.lookup string varDictionary of
+    Just _ -> Map.insert string (Just (evalExpr assingExpr varDictionary)) varDictionary
+    Nothing -> error ("Variable " ++ string ++ " not declared"))
 
-se te ha desconectado otra vez xD
-
-evalExpr :: Expr -> Int
-evalExpr (Int int) = int 
+evalExpr :: Expr -> (Map.Map String (Maybe Integer)) -> Integer
+evalExpr (Int integer) varDictionary = integer
+evalExpr (Var string) varDictionary = return (case Map.lookup string varDictionary of
+    Just x -> x 
+    Nothing -> error ("Variable " ++ string ++ " not declared"))
 
 evalIdList :: [String] -> (Map.Map String (Maybe Integer)) -> (Map.Map String (Maybe Integer))
 evalIdList [] table = table
@@ -35,8 +38,5 @@ evalIdList (id:ids) table = evalIdList ids new_table
     where new_table = Map.insert id Nothing table
 
 main = do
-    let variables = ["hola", "adios"]
-    let dictionary = evalIdList variables Map.empty
-    print(dictionary)
-    new_dictionary <- eval (Program "Suma" ["Suma"] [Assign "Suma" (Int 5)])
+    new_dictionary <- eval (Program "Suma" ["Adios"] [Assign "Suma" (Int 5)])
     print(new_dictionary)

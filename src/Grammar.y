@@ -108,7 +108,7 @@ data WriteArg
     
 data Expr 
     = Var String
-    | Int Int
+    | Int Integer
     | Brack Expr
     | Plus Expr Expr
     | Minus Expr Expr

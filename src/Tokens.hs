@@ -9334,7 +9334,7 @@ data Token =
   TokenComma |
   TokenSemicolon |
   TokenPoint |
-  TokenInt Int |
+  TokenInt Integer |
   TokenIdentifier String |
   TokenRead | 
   TokenWrite |
