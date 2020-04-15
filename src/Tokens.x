@@ -6,6 +6,7 @@ module Tokens where
 
 $digit = 0-9			  -- digits
 $alpha = [a-zA-Z]		-- alphabetic characters (ñ not included)
+$writeArgs = [$digit $alpha \_ \- \; \: \. \= \> \<]
 
 tokens :-
     \n+                            {\s -> TokenNewLine}
@@ -36,7 +37,7 @@ tokens :-
     \.                            {\s -> TokenPoint}
     $digit+	                      { \s -> TokenInt (read s) }
     $alpha [$alpha $digit \_ ]*		{ \s -> TokenIdentifier s }
-    \"$printable+\"               { \s -> TokenWriteString s }
+    \" $writeArgs* \"               { \s -> TokenWriteString (read s) }
     
 
 {

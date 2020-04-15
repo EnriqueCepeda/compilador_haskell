@@ -7,7 +7,7 @@ import Control.Monad
 
 eval :: Program -> IO (Map.Map String (Maybe Integer))
 eval (Program name variables lines) = do
-    print("Name of the program: " ++name)
+
     let varDictionary = evalIdList variables Map.empty
     new_varDictionary <- evalLines lines varDictionary
     return new_varDictionary
@@ -40,6 +40,11 @@ evalLine (Write writeArgs) varDictionary = do
     print (evalWriteArgs writeArgs varDictionary)
     return varDictionary
 
+evalLine (Read string) varDictionary = do
+    num <- getLine
+    let x = (read num :: Integer)
+    saveValue string x varDictionary
+
 evalWriteArgs :: [WriteArg] -> (Map.Map String (Maybe Integer)) -> String
 evalWriteArgs [] varDictionary = ""
 evalWriteArgs (writeArg:writeArgs) varDictionary = (evalWriteArg writeArg varDictionary) ++ " " ++ (evalWriteArgs writeArgs varDictionary)
@@ -71,11 +76,19 @@ getValue var varDictionary = (case Map.lookup var varDictionary of
             Nothing -> error ("Variable " ++ var ++ " not initialized")
         Nothing -> error ("Variable " ++ var ++ " not declared"))
 
+saveValue :: String -> Integer -> (Map.Map String (Maybe Integer)) -> IO (Map.Map String (Maybe Integer))
+saveValue var num varDictionary = return (case Map.member var varDictionary of
+        True -> Map.insert var (Just num) varDictionary
+        False -> error ("Variable " ++ var ++ " not declared"))
+
 evalIdList :: [String] -> (Map.Map String (Maybe Integer)) -> (Map.Map String (Maybe Integer))
 evalIdList [] table = table
 evalIdList (id:ids) table = evalIdList ids new_table
     where new_table = Map.insert id Nothing table
 
 main = do
-    new_dictionary <- eval (Program "Suma" ["Suma","Por5"] [Write [String "\"hola\"",Expr (Int 5)]])
+    new_dictionary <- eval (Program "Suma" ["Suma","Por5"] [Write [String "hola",Expr (Int 5)]])
     print(new_dictionary)
+
+    other <- evalLine (Read "hola") Map.empty
+    print (other)
