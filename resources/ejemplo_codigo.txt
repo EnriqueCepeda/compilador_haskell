@@ -1,5 +1,8 @@
 PROGRAM Suma;
-VAR Suma;
+VAR var1, var2;
 BEGIN
-Suma := 5;
+var1 := 4;
+var2 := 5;
+WHILE var1<5 DO
+writeln("HOLA");
 END.

@@ -16,256 +16,6 @@ import Data.Array.Base (unsafeAt)
 import Array
 #endif
 {-# LINE 1 "templates/wrappers.hs" #-}
-{-# LINE 1 "templates/wrappers.hs" #-}
-{-# LINE 1 "<built-in>" #-}
-{-# LINE 1 "<command-line>" #-}
-{-# LINE 9 "<command-line>" #-}
-# 1 "/usr/include/stdc-predef.h" 1 3 4
-
-# 17 "/usr/include/stdc-predef.h" 3 4
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{-# LINE 9 "<command-line>" #-}
-{-# LINE 1 "/usr/lib/ghc/include/ghcversion.h" #-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{-# LINE 9 "<command-line>" #-}
-{-# LINE 1 "/tmp/ghc551d_0/ghc_2.h" #-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{-# LINE 9 "<command-line>" #-}
-{-# LINE 1 "templates/wrappers.hs" #-}
 -- -----------------------------------------------------------------------------
 -- Alex wrapper code.
 --
@@ -278,7 +28,21 @@ import Array
 
 
 import Data.Word (Word8)
-{-# LINE 28 "templates/wrappers.hs" #-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 import Data.Char (ord)
 import qualified Data.Bits
@@ -311,13 +75,84 @@ type Byte = Word8
 -- -----------------------------------------------------------------------------
 -- The input type
 
-{-# LINE 79 "templates/wrappers.hs" #-}
 
-{-# LINE 102 "templates/wrappers.hs" #-}
 
-{-# LINE 120 "templates/wrappers.hs" #-}
 
-{-# LINE 138 "templates/wrappers.hs" #-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 -- -----------------------------------------------------------------------------
 -- Token positions
@@ -329,18 +164,236 @@ type Byte = Word8
 -- `move_pos' calculates the new position after traversing a given character,
 -- assuming the usual eight character tab stops.
 
-{-# LINE 161 "templates/wrappers.hs" #-}
+
+
+
+
+
+
+
+
+
+
+
+
 
 -- -----------------------------------------------------------------------------
 -- Default monad
 
-{-# LINE 274 "templates/wrappers.hs" #-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 -- -----------------------------------------------------------------------------
 -- Monad (with ByteString input)
 
-{-# LINE 379 "templates/wrappers.hs" #-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 -- -----------------------------------------------------------------------------
@@ -373,9 +426,35 @@ alexGetByte (_,[],(c:s)) = case utf8Encode c of
 -- -----------------------------------------------------------------------------
 -- Basic wrapper, ByteString version
 
-{-# LINE 425 "templates/wrappers.hs" #-}
 
-{-# LINE 440 "templates/wrappers.hs" #-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 -- -----------------------------------------------------------------------------
@@ -383,13 +462,32 @@ alexGetByte (_,[],(c:s)) = case utf8Encode c of
 
 -- Adds text positions to the basic model.
 
-{-# LINE 457 "templates/wrappers.hs" #-}
+
+
+
+
+
+
+
+
+
+
 
 
 -- -----------------------------------------------------------------------------
 -- Posn wrapper, ByteString version
 
-{-# LINE 473 "templates/wrappers.hs" #-}
+
+
+
+
+
+
+
+
+
+
+
 
 
 -- -----------------------------------------------------------------------------
@@ -397,23 +495,36 @@ alexGetByte (_,[],(c:s)) = case utf8Encode c of
 
 -- For compatibility with previous versions of Alex, and because we can.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 alex_tab_size :: Int
 alex_tab_size = 8
 alex_base :: Array Int Int
 alex_base = listArray (0 :: Int, 60)
   [ -8
   , -55
-  , 81
+  , 83
   , -3
   , 0
-  , 156
-  , 231
-  , 306
-  , 381
-  , 456
-  , 531
-  , 606
-  , 681
+  , 158
+  , 233
+  , 308
+  , 383
+  , 458
+  , 533
+  , 608
+  , 683
   , 0
   , 0
   , 0
@@ -430,42 +541,42 @@ alex_base = listArray (0 :: Int, 60)
   , 0
   , 0
   , -37
-  , 756
-  , 831
-  , 906
-  , 981
-  , 1056
-  , 1131
-  , 1206
-  , 1281
-  , 1356
-  , 1431
-  , 1506
-  , 1581
-  , 1656
-  , 1731
-  , 1806
-  , 1881
-  , 1956
-  , 2031
-  , 2106
-  , 2181
-  , 2256
-  , 2331
-  , 2406
-  , 2481
-  , 2556
-  , 2631
-  , 2706
-  , 2781
-  , 2856
-  , 2931
-  , 3006
+  , 758
+  , 833
+  , 908
+  , 983
+  , 1058
+  , 1133
+  , 1208
+  , 1283
+  , 1358
+  , 1433
+  , 1508
+  , 1583
+  , 1658
+  , 1733
+  , 1808
+  , 1883
+  , 1958
+  , 2033
+  , 2108
+  , 2183
+  , 2258
+  , 2333
+  , 2408
+  , 2483
+  , 2558
+  , 2633
+  , 2708
+  , 2783
+  , 2858
+  , 2933
+  , 3008
   , 0
   ]
 
 alex_table :: Array Int Int
-alex_table = listArray (0 :: Int, 3261)
+alex_table = listArray (0 :: Int, 3263)
   [ 0
   , 4
   , 3
@@ -581,14 +692,16 @@ alex_table = listArray (0 :: Int, 3261)
   , 44
   , 44
   , 44
+  , 2
+  , 0
   , 60
   , 0
   , 0
   , 0
   , 0
   , 0
-  , 0
-  , 0
+  , 2
+  , 2
   , 0
   , 0
   , 0
@@ -3731,7 +3844,7 @@ alex_table = listArray (0 :: Int, 3261)
   ]
 
 alex_check :: Array Int Int
-alex_check = listArray (0 :: Int, 3261)
+alex_check = listArray (0 :: Int, 3263)
   [ -1
   , 9
   , 10
@@ -3847,14 +3960,16 @@ alex_check = listArray (0 :: Int, 3261)
   , 120
   , 121
   , 122
+  , 32
+  , -1
   , 34
   , -1
   , -1
   , -1
   , -1
   , -1
-  , -1
-  , -1
+  , 40
+  , 41
   , -1
   , -1
   , -1
@@ -7250,256 +7365,6 @@ alex_action_25 =  \s -> TokenInt (read s)
 alex_action_26 =  \s -> TokenIdentifier s 
 alex_action_27 =  \s -> TokenWriteString (read s) 
 {-# LINE 1 "templates/GenericTemplate.hs" #-}
-{-# LINE 1 "templates/GenericTemplate.hs" #-}
-{-# LINE 1 "<built-in>" #-}
-{-# LINE 1 "<command-line>" #-}
-{-# LINE 8 "<command-line>" #-}
-# 1 "/usr/include/stdc-predef.h" 1 3 4
-
-# 17 "/usr/include/stdc-predef.h" 3 4
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{-# LINE 8 "<command-line>" #-}
-{-# LINE 1 "/usr/lib/ghc/include/ghcversion.h" #-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{-# LINE 8 "<command-line>" #-}
-{-# LINE 1 "/tmp/ghc8a9b_0/ghc_2.h" #-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{-# LINE 8 "<command-line>" #-}
-{-# LINE 1 "templates/GenericTemplate.hs" #-}
 -- -----------------------------------------------------------------------------
 -- ALEX TEMPLATE
 --
@@ -7509,19 +7374,101 @@ alex_action_27 =  \s -> TokenWriteString (read s)
 -- -----------------------------------------------------------------------------
 -- INTERNALS and main scanner engine
 
-{-# LINE 21 "templates/GenericTemplate.hs" #-}
 
-{-# LINE 51 "templates/GenericTemplate.hs" #-}
 
-{-# LINE 72 "templates/GenericTemplate.hs" #-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 alexIndexInt16OffAddr arr off = arr ! off
 
 
-{-# LINE 93 "templates/GenericTemplate.hs" #-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 alexIndexInt32OffAddr arr off = arr ! off
 
 
-{-# LINE 105 "templates/GenericTemplate.hs" #-}
+
+
+
+
+
+
+
+
+
 quickIndex arr i = arr ! i
 
 
@@ -7653,3 +7600,4 @@ alexRightContext (sc) user__ _ _ input__ =
         -- TODO: there's no need to find the longest
         -- match when checking the right context, just
         -- the first match will do.
+

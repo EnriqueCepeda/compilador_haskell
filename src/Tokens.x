@@ -6,7 +6,7 @@ module Tokens where
 
 $digit = 0-9			  -- digits
 $alpha = [a-zA-Z]		-- alphabetic characters (ñ not included)
-$writeArgs = [$digit $alpha \_ \- \; \: \. \= \> \<]
+$writeArgs = [$digit $alpha \ \_ \- \; \: \. \= \> \< \+ - \* \( \)]
 
 tokens :-
     \n+                            {\s -> TokenNewLine}

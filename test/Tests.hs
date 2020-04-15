@@ -1,15 +1,17 @@
 
 module Main where
 
-import Test.Tasty.HUnit as HU
-import Test.Tasty
-import Data.Char
-import TestLexical
-import Tokens
+import           Data.Char
+import           Test.Tasty
+import           Test.Tasty.HUnit as HU
+import           TestLexical
+import           TestSintax
+import           Tokens
 
 allTests :: TestTree
 allTests = testGroup "Unit tests" [
-    TestLexical.lexicalTests
+    TestLexical.lexicalTests,
+    TestSintax.sintaxTests
     ]
 
 main :: IO ()

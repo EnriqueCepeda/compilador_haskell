@@ -20,10 +20,12 @@ cabal-version:       >=1.10
 library
   exposed-modules:     Tokens,
                        Paths_haskell_compiler,
-                       Grammar
+                       Grammar,
+                       Evaluation
   build-depends:       array >=0.5 && <0.6,
                        base >=4.12 && <4.13,
-                       hashmap
+                       hashmap,
+                       containers
   hs-source-dirs:      src
   build-tools:         alex, happy
   autogen-modules:     Paths_haskell_compiler
@@ -41,7 +43,6 @@ executable haskell-compiler
   default-language: Haskell2010
   ghc-options: -Wall -Wmissing-home-modules
 
-
 test-suite test
   type:                exitcode-stdio-1.0
   build-depends:       base >= 4.12 && <4.13,
@@ -49,8 +50,9 @@ test-suite test
                        tasty,
                        tasty-hunit,
                        tasty-hspec
-  --other-modules:       TestLexical
+  other-modules:       TestSintax,
+                       TestLexical
   hs-source-dirs:      test
-  main-is:             TestSintax.hs             
+  main-is:             Tests.hs             
 
                 

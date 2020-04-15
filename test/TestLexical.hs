@@ -1,6 +1,5 @@
 
 module TestLexical where
-
 import Test.Tasty.HUnit as HU
 import Test.Tasty
 import Data.Char

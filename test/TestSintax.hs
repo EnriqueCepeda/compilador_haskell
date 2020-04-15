@@ -1,21 +1,18 @@
 module TestSintax where
 
-import Test.Tasty.HUnit as HU
-import Test.Tasty.Hspec
-import Test.Tasty
-import Data.Char
-import Tokens 
-import Grammar
+import           Data.Char
+import           Grammar
+import           Test.Tasty
+import           Test.Tasty.HUnit as HU
+import           Tokens
 
-getGrammar = do 
-    tokens <- readFile "resources/ejemplo_codigo.txt" 
-    let grammar = parser tokens
-    return grammar
+testWrite = HU.testCase "writeln arguments int, string, variable, and add expresions works" $ do
+    fileContent <- readFile "resources/testWrite.txt"
+    let tokens = scanTokens fileContent
+    let syntax = parser tokens
+    let grammarWrite = Program "Suma" ["var1","var2"] [Assign "var1" (Int 5),Write [Expr (Int 5),String "HOLA",Expr (Var "var1"),Expr (Plus (Int 1) (Int 1))]]
+    assertEqual "Int, string, variable and arithmetic arguments works inside a write expression" grammarWrite syntax
 
-testWrite :: IO()
-testWrite = do
-    describe "write" $ do
-        it "returns a write token" $ do
-        let grammarWrite = [Program "HelloWorld" (Write (String "Hello World"))]
-        getGrammar `shouldBe` grammarWrite
 
+
+sintaxTests = testGroup "Sintax Analyzer tests" [testWrite]
