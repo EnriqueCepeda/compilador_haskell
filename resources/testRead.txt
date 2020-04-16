@@ -1,0 +1,5 @@
+PROGRAM Read;
+VAR var1;
+BEGIN
+readln(var);
+END.

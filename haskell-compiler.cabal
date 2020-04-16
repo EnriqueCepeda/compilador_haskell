@@ -6,14 +6,13 @@ version:             0.1.0.0
 -- synopsis:
 -- description:
 homepage:            https://github.com/EnriqueCepeda/compilador_haskell
--- license:
 license-file:        LICENSE
 author:              Enrique Cepeda Villamayor and Raul Bernalte Sanchez
 maintainer:          ecepedavillamayor@gmail.com
--- copyright:
--- category:
 build-type:          Simple
-extra-source-files:  CHANGELOG.md, README.md
+extra-source-files:  README.md,
+                     test/resources/*
+                     resources*
 cabal-version:       >=1.10
 
 

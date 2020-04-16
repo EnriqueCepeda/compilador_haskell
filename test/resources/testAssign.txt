@@ -1,0 +1,4 @@
+PROGRAM testAssign;
+BEGIN
+var := 1;
+END.

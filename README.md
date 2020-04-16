@@ -7,4 +7,4 @@ Para correr el compilador con un subconjunto de este lenguaje ejecuta el siguien
 
 Para correr los tests hechos sobre el analizador léxico ejecuta el siguiente comando
 
-    cabal new-run tests
+    cabal new-test

@@ -1,0 +1,4 @@
+PROGRAM WriteExpr;
+BEGIN
+writeln(var1-var2, var1 * var2, ((var1)));
+END.

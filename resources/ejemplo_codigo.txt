@@ -1,8 +1,7 @@
 PROGRAM Suma;
 VAR var1, var2;
 BEGIN
-var1 := 4;
 var2 := 5;
 WHILE var1<5 DO
-writeln("HOLA");
+readln(var1);
 END.

@@ -1,0 +1,7 @@
+PROGRAM WhileLarge;
+BEGIN
+WHILE 5 < 5 DO
+BEGIN
+var := 1;
+END;
+END.

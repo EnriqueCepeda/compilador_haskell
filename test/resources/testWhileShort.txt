@@ -1,0 +1,10 @@
+PROGRAM WhileShort;
+BEGIN
+WHILE 5 < 5 DO
+WHILE 5<=5 DO
+WHILE 5 >= 5 DO
+WHILE 5 < 5 DO
+WHILE 5 <> 5 DO
+WHILE 5 = 5 DO
+var := 1;
+END.
