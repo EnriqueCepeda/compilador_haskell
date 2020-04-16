@@ -58,8 +58,7 @@ import Data.Char
 
     line : while log_expr do nl begin nl lines end ';' nl     { WhileLarge $2 $7 }
          | while log_expr do nl line                          { WhileShort $2 $5 }
-         | if log_expr then nl begin nl lines end ';' nl      { IfShort $2 $7}
-         | if log_expr then nl begin nl lines end ';' nl else nl begin nl lines end ';' nl {IfLarge $2 $7 $15}
+         | if log_expr then nl begin nl lines end ';' nl      { If $2 $7}
          | id ':=' expr ';' nl                                { Assign $1 $3}
          | writeln '(' write_args ')' ';' nl                  { Write $3 }
          | readln '(' id ')' ';' nl                           { Read $3 }
@@ -101,8 +100,7 @@ data Program
 data Line
     = WhileLarge LogExpr [Line]
     | WhileShort LogExpr Line
-    | IfShort LogExpr [Line]
-    | IfLarge LogExpr [Line] [Line]
+    | If LogExpr [Line]
     | Assign String Expr
     | Write [WriteArg]
     | Read String

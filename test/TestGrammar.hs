@@ -1,12 +1,12 @@
 {-# LANGUAGE TemplateHaskell #-}
 
-
 module TestGrammar where
 
 import           Grammar
 import           Test.Tasty
 import           Test.Tasty.HUnit as HU
 import           Tokens
+
 
 
 getsyntax filepath =  do

@@ -1,0 +1,5 @@
+PROGRAM Expression;
+VAR result;
+BEGIN
+result := 9 * 5 + 3 * (3 + 4) * (5 + 6);
+END.

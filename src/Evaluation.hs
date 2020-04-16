@@ -41,13 +41,9 @@ evalLine (WhileShort logExpr line) varDictionary = (case evalLogExpr logExpr var
         evalLine (WhileShort logExpr line) new_varDictionary
     False -> return varDictionary)
 
-evalLine (IfShort logExpr lines) varDictionary = (case evalLogExpr logExpr varDictionary of
+evalLine (If logExpr lines) varDictionary = (case evalLogExpr logExpr varDictionary of
     True  -> evalLines lines varDictionary
     False -> return varDictionary)
-
-evalLine (IfLarge logExpr linesIf linesElse) varDictionary = (case evalLogExpr logExpr varDictionary of
-    True  -> evalLines linesIf varDictionary
-    False -> evalLines linesElse varDictionary)
 
 evalLine (Write writeArgs) varDictionary = do
     F.mapM_ putStrLn (evalWriteArgs writeArgs varDictionary)
