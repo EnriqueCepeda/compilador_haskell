@@ -1,10 +1,14 @@
-module Main where
-import Tokens
-import Grammar
-import Evaluation
+{-# LANGUAGE TemplateHaskell #-}
 
-main = do 
+module Main where
+import           Evaluation
+import           Grammar
+import           Tokens
+
+main = do
     fileContent <- readFile "resources/testRead.txt"
     let tokens = scanTokens fileContent
     let syntax = parser tokens
-    eval syntax
+    print(syntax)
+    dictionary <- eval syntax
+    print(dictionary)

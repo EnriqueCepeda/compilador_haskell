@@ -1,17 +1,21 @@
 
+{-# LANGUAGE TemplateHaskell #-}
+
 module Main where
 
-import           Data.Char
 import           Test.Tasty
 import           Test.Tasty.HUnit as HU
-import           TestLexical
-import           TestSintax
-import           Tokens
+import           TestEvaluation
+import           TestGrammar
+import           TestTokens
+
+
 
 allTests :: TestTree
 allTests = testGroup "Unit tests" [
-    TestLexical.lexicalTests,
-    TestSintax.sintaxTests
+    TestTokens.lexicalTests,
+    TestGrammar.sintaxTests,
+    TestEvaluation.evaluationTests
     ]
 
 main :: IO ()

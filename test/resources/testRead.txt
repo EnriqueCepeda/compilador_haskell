@@ -1,4 +1,0 @@
-PROGRAM Write;
-BEGIN
-readln(var);
-END.

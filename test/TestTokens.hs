@@ -1,9 +1,11 @@
 
-module TestLexical where
-import Test.Tasty.HUnit as HU
-import Test.Tasty
-import Data.Char
-import Tokens
+{-# LANGUAGE TemplateHaskell #-}
+
+module TestTokens where
+import           Data.Char
+import           Test.Tasty
+import           Test.Tasty.HUnit as HU
+import           Tokens
 
 testNewLine = HU.testCase "New line recognized" (
     assertEqual "New line should return TokenNewLine" (scanTokens "\n") [TokenNewLine])
@@ -66,7 +68,7 @@ testHigherEqualThan = HU.testCase "HigherEqualThan sign recognized" (
     assertEqual " >= should return TokenHigherEqualThan" (scanTokens ">=") [TokenHigherEqualThan])
 
 testLessEqualThan = HU.testCase "LessEqualThan sign recognized" (
-    assertEqual " <= should return TokenLessEqualThan" (scanTokens "<=") [TokenLessEqualThan]) 
+    assertEqual " <= should return TokenLessEqualThan" (scanTokens "<=") [TokenLessEqualThan])
 
 testComma = HU.testCase "Comma element recognized" (
     assertEqual " , should return TokenComma" (scanTokens ",") [TokenComma])
@@ -91,7 +93,7 @@ testWriteString = HU.testCase "Write string argument recognized" $
 
 
 lexicalTests :: TestTree
-lexicalTests = testGroup "Lexical Analyzer tests" 
+lexicalTests = testGroup "Lexical Analyzer tests"
     [testNewLine, testBegin, testProgram, testVar, testWhile, testDo,
     testEnd, testWriteLine, testReadLine, testLeftParenthesis, testRightParenthesis,
     testPlusSign, testMinusSign, testProductSign, testLessThan, testHigherThan,
