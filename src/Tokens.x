@@ -17,6 +17,9 @@ tokens :-
     "WHILE"                       {\s -> TokenWhile}
     "DO"                          {\s -> TokenDo}
     "END"                         {\s -> TokenEnd}
+    "IF"                          {\s -> TokenIf}
+    "THEN"                        {\s -> TokenThen}
+    "ELSE"                        {\s -> TokenElse}
     "writeln"                     {\s -> TokenWrite}
     "readln"                      {\s -> TokenRead}
 
@@ -51,7 +54,10 @@ data Token =
   TokenVar | 
   TokenWhile | 
   TokenDo | 
-  TokenEnd | 
+  TokenEnd |
+  TokenIf |
+  TokenThen |
+  TokenElse | 
   TokenLeftParenthesis |
   TokenRightParenthesis |
   TokenPlus |
