@@ -1,0 +1,11 @@
+PROGRAM while;
+VAR i, inc;
+BEGIN
+i := 5;
+inc := 0;
+WHILE i > 0 DO
+BEGIN
+i := i - 1;
+inc := inc + 1;
+END;
+END.

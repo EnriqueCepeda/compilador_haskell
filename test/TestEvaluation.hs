@@ -21,12 +21,15 @@ evalFile file = do
 testExpression = HU.testCase "An arithmetic expression evaluated according to precendes of operators" $ do
     dictionary <- evalFile "testExpression.txt"
     assertEqual "It should return 276" dictionary (Map.fromList [("result",Just 276)])
- 
---Doesnt work at the moment
-testAssignation = HU.testCase "An assignation of a non declared variable return an error" do
-    Exc.catch (dictionary <- evalFile "testExpression.txt") handler
-        where handler error = assertBool "Should throw an error" True
 
-evalLineTests = testGroup "EvalLine tests" [testExpression]
+testWhile = HU.testCase "A while expression must stop when the logic expression is not true" $ do
+    dictionary <- evalFile "testWhile.txt"
+    assertEqual "It should return i = 0 and inc = 5" dictionary (Map.fromList [("i",Just 0),("inc",Just 5)])
+
+testIf = HU.testCase "An if expression must execute only if the logic expression is true" $ do
+    dictionary <- evalFile "testIf.txt"
+    assertEqual "It should return a = 10 and b = 20" dictionary (Map.fromList [("a",Just 10),("b",Just 10)])
+
+evalLineTests = testGroup "EvalLine tests" [testExpression, testWhile, testIf]
 evaluationTests = testGroup "Evaluation method tests" [evalLineTests]
 

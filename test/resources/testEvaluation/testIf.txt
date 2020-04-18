@@ -1,0 +1,10 @@
+PROGRAM while;
+VAR a,b;
+BEGIN
+a := 20;
+b := 10;
+IF a > b THEN
+BEGIN
+a := a - b;
+END;
+END.
