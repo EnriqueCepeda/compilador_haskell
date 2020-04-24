@@ -1,0 +1,39 @@
+program ::= "PROGRAM" id ";" "\n" <var_declaration> "begin" "\n" <lines> "END" "."  
+        | program_token id ";" "\n" <var_declaration> "begin" "\n" <lines> "END" "." "\n" 
+
+lines ::= <line> <lines>           
+        | <line>                     
+
+line ::= "WHILE" <log_expr> "DO" "\n" "begin" "\n" <lines> "END" ";" "\n"     
+        | "WHILE" <log_expr> "DO" " \n" <line>                          
+        | "IF" <log_expr> "THEN" "\n" "begin" "\n" <lines> "END" ";" "\n"      
+        | id ":=" <expr> ";" "\n"                                
+        | "writeln" "(" <write_args> ")" ";" "\n"                   
+        | "readln" "(" id ")" ";" "\n"
+        
+                                
+var_declaration ::= "VAR" <id_list>      
+                | {- empty -} 
+
+id_list::= id "," <id_list>         
+            | id ";" "\n"           
+
+write_args ::= <write_arg> "," <write_args>      
+            | <write_arg>                    
+
+write_arg ::= string                         
+        | <expr>                             
+
+expr ::=  id                     
+        | integer                  
+        | "(" <expr> ")"         
+        | <expr> "+" <expr>        
+        | <expr> "-" <expr>        
+        | <expr> "*" <expr>        
+
+log_expr ::= <expr> ">=" <expr>      
+        |  <expr> "<=" <expr>      
+        |  <expr> ">" <expr>       
+        |  <expr> "<" <expr>       
+        |  <expr> "=" <expr>       
+        |  <expr> "<>" <expr>      

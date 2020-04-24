@@ -19,7 +19,6 @@ tokens :-
     "END"                         {\s -> TokenEnd}
     "IF"                          {\s -> TokenIf}
     "THEN"                        {\s -> TokenThen}
-    "ELSE"                        {\s -> TokenElse}
     "writeln"                     {\s -> TokenWrite}
     "readln"                      {\s -> TokenRead}
 
