@@ -8,15 +8,15 @@ Compilador e interprete hecho en Haskell de [un subconjunto definido del lenguaj
 
 Para hacer funcionar el proyecto, primero es necesario compilarlo. Para ello, ejecuta el siguiente comando la terminal de tu Sistema Operativo:
 
-    cabal new-build haskell-compiler --enable-tests
+    cabal new-build main --enable-tests
 
 Para interpretar un codigo fuente ejemplo (incluido en el proyecto) proveniente del [subconjunto especificado en la gramática Backus-Naur](docs/grammar.bnf) ejecuta el siguiente comando en la terminal:
 
-    cabal new-exec haskell-compiler
+    cabal new-exec main
 
 Para interpretar archivos de código fuente adicionales, incluir en la carpeta resources estos archivos, y ejecuta en la terminal el siguiente comando:
 
-    cabla new-exec haskell-compiler <nombre_archivo>
+    cabla new-exec main <nombre_archivo>
 
 Para correr los tests hechos del analizador léxico, sintáctico y evaluador, ejecuta en la terminal el siguiente comando:
 
