@@ -33,15 +33,15 @@ Work done for Declarative Programming subject by Raul Bernalte Sánchez and Enri
 
 To use the project, compiling it is necessary. For that, run the following command in your Operative System terminal.
 
-    cabal new-build haskell-compiler --enable-tests
+    cabal new-build main --enable-tests
 
 To interpret an example source code (included in the project) which comes from the [subset specified in the Backus-Naur grammar](docs/grammar.bnf) run the following command in the terminal:
 
-    cabal new-exec haskell-compiler
+    cabal new-exec main
 
 To interpret additional source code files, include those files in resources folder, and run the following command in the terminal:
 
-    cabla new-exec haskell-compiler <nombre_archivo>
+    cabal new-exec main <nombre_archivo>
 
 To run the made tests for the lexer, parser and evaluator, execute in terminal the following command:
 

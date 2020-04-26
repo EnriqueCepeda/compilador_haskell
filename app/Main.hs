@@ -10,7 +10,7 @@ import           Tokens
 main = do
     args <- getArgs
     let filePath = case args of
-                []     -> "resources" </> "testRead.txt"
+                []     -> "resources" </> "ejemplo_codigo.txt"
                 [x]    -> "resources" </> x
                 (x:xs) -> "resources" </> x
 
