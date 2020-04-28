@@ -1,0 +1,9 @@
+PROGRAM Suma;
+VAR var2;
+BEGIN
+var2 := 0;
+writeln("INTRODUCE UN 5 PARA TERMINAR EL BUCLE WHILE");
+WHILE var2<5 DO
+readln(var2);
+writeln("HA SALIDO DEL BUCLE");
+END.
