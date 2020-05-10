@@ -1,6 +1,6 @@
 # COMPILADOR FUNCIONAL EN HASKELL
 ## ESPAÑOL
-Compilador e interprete hecho en Haskell de [un subconjunto definido del lenguaje PASCAL]((docs/grammar.bnf)) para la asignatura de Programación Declarativa hecho por Raul Bernalte Sánchez y Enrique Cepeda Villamayor.
+Compilador e interprete hecho en Haskell de [un subconjunto definido del lenguaje PASCAL]((docs/grammar.bnf)) para la asignatura de Programación Declarativa hecho por [Raul Bernalte Sánchez](https://www.linkedin.com/in/ra%C3%BAl-bernalte-s%C3%A1nchez-467123194/) y [Enrique Cepeda Villamayor](https://www.linkedin.com/in/enrique-cepeda-23154915a/).
 
 ### Requisitos
 1. [Cabal 2.0.0](https://www.haskell.org/cabal/) 
@@ -25,7 +25,7 @@ Para correr los tests hechos del analizador léxico, sintáctico y evaluador, ej
 
 ## ENGLISH
 Compiler and interpreter made in Haskell of a [concrete subset of PASCAL lenguage]((docs/grammar.bnf)). 
-Work done for Declarative Programming subject by Raul Bernalte Sánchez and Enrique Cepeda Villamayor.
+Work done for Declarative Programming subject made by [Raul Bernalte Sánchez](https://www.linkedin.com/in/ra%C3%BAl-bernalte-s%C3%A1nchez-467123194/) and [Enrique Cepeda Villamayor](https://www.linkedin.com/in/enrique-cepeda-23154915a/).
 
 ### Requirements
 1. [Cabal 2.0.0](https://www.haskell.org/cabal/) 
