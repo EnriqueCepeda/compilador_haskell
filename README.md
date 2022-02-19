@@ -24,7 +24,7 @@ Para correr los tests hechos del analizador léxico, sintáctico y evaluador, ej
 
 
 ## ENGLISH
-Compiler and interpreter made in Haskell of a [concrete subset of PASCAL lenguage]((docs/grammar.bnf)). 
+Compiler and interpreter made in Haskell of a [concrete subset of PASCAL language]((docs/grammar.bnf)). 
 Work done for Declarative Programming subject made by [Raul Bernalte Sánchez](https://www.linkedin.com/in/ra%C3%BAl-bernalte-s%C3%A1nchez-467123194/) and [Enrique Cepeda Villamayor](https://www.linkedin.com/in/enrique-cepeda-23154915a/).
 
 ### Requirements
